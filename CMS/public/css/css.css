@@ -1,0 +1,1980 @@
+/* ======================================================
+   Import Google Fonts
+   ====================================================== */
+   @import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+   /* ======================================================
+      Root Variables: Global values for fonts and colors
+      ====================================================== */
+   :root {
+       --headingfont: Aldrich;            
+       --contentfont: Inter;               
+       --transparentblue: #BCC1CA40;       
+       --transparentgrey: #171a1f12;      
+       --headingcolour: #C3983AFF;         
+       --backgroundcolour: #101010FF;      
+       --contentgrey: #A3A3A3;
+   }
+   
+   /* ======================================================
+      General Page Styling
+      ====================================================== */
+   body {
+       background-color: var(--backgroundcolour);          
+       margin: 0;
+       padding: 0;
+       color: white;
+       min-height: 100vh;                               
+       display: flex;
+       flex-direction: column;
+       font-family: var(--contentfont);
+   }
+   
+    main {
+        flex: 1; 
+        padding: 2vh 10% 0%;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;                   
+    }
+   
+   /* ======================================================
+      Header Styling
+      ====================================================== */
+   header {
+       margin: 0;
+       padding: 0;
+       position: relative;                
+       font-family: var(--headingfont);
+       color: var(--headingcolour);
+       width: 100%;
+       top: 0;
+       left: 0;
+       background: linear-gradient(0deg, black 0%, #00000066 100%); 
+       border-radius: 0;
+       border-bottom-width: 0.2vh;
+       border-color: var(--transparentblue);  
+       border-bottom-style: solid;
+       display: flex;
+       justify-content: space-between;   
+       align-items: center;
+       height: auto;
+   }
+   
+   /* ======================================================
+      Logo Section
+      ====================================================== */
+   .logo a {
+       display: flex;
+       align-items: center;
+       padding: 0 0 0 8vw;
+       font-family: var(--contentfont);
+       text-decoration: none;
+   }
+  
+   .logo img {
+       height: 7vh;
+       margin-right: 1vw;              
+       border-radius: 20%;
+   }
+   
+   .page-title {
+       font-size: 1.2vw;
+       font-family: var(--headingfont);
+       color: var(--headingcolour);
+   }
+   
+   /* ======================================================
+      Header Menu Styling
+      ====================================================== */
+   nav {
+       top: 1.3vh;
+       left: 40%;
+       height: 8vh;
+       display: flex;
+       align-items: center;
+       font-size: 2vh;
+       line-height: auto;
+       font-weight: 400;
+
+       align-items: center;
+       width: auto;
+       flex-direction: column;
+       padding: 0.5vw;
+   }
+   
+   /* Header nav Menu Items (not the current page) */
+   nav .header-menu-item {
+       padding: 1.3vh 0.1vw;
+       display: flex;
+       width: 100%;                     
+       align-items: center;
+       justify-content: center;
+       font-family: var(--headingfont);
+       color: var(--headingcolour);
+       border-radius: 0;
+       cursor: pointer;
+       white-space: nowrap;
+       text-decoration: none;
+       transition: border-bottom-width 0.15s ease, padding-bottom 0.15s ease;
+   }
+   
+   /* Header Menu Items hover styling */
+   nav .header-menu-item:hover {
+       border-bottom-style: solid;      
+       border-bottom-color: var(--headingcolour);
+       border-bottom-width: 0.43vh;
+       padding-bottom: 1.3vh;
+       text-decoration: none;          
+   }
+   
+   /* Header Menu Items  selected state */
+   nav .header-menu-item-active {
+    padding: 1.3vh 0.1vw;
+    display: flex;
+    width: 100%;                     
+    align-items: center;
+    justify-content: center;
+    font-family: var(--headingfont);
+
+    font-weight: 700;                
+    color: var(--headingcolour);
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    border-bottom-style: solid;
+    border-bottom-color: var(--headingcolour);
+    padding-bottom: 1.3vh;
+    border-bottom-width: 0.43vh;
+   }
+
+
+.nav-links {
+    list-style-type: none;          
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+.nav-links li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 1vh 0.5vw;
+    margin: 0 0.3vw;
+    align-items: center;
+}
+   
+   /* ======================================================
+      Contact Info in Header
+      ====================================================== */
+   .contact-info {
+       display: flex;
+       align-items: center;
+       gap: 0.5vw;                        /* Space between icon and text */
+       font-family: var(--headingfont);
+       color: var(--headingcolour);
+       font-size: 2.5vh;
+       padding-right: 10%;
+       text-decoration: none;
+   }
+
+   .contact-info a {
+        text-decoration: none;
+        font-family: var(--headingfont);
+        color: var(--headingcolour);
+        display: flex;
+        align-items: center;
+   }
+    .phone-icon img{
+        height: 5vh;
+        vertical-align: middle;
+        width: auto;
+    }
+   
+   /* ======================================================
+      contact info on home screen
+      ====================================================== */
+
+   /* Container for everything*/
+.home-contact-details {
+    display: flex;
+    justify-content: center;
+    margin: 2vh 0;
+    max-height: 30vh;
+  }
+  
+  /* Underline from start of email icon to end of opening hours text */
+  .underline-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+    border-bottom: 0.1vh solid rgba(188, 193, 202, 0.37);
+    gap: 3vw;
+    padding: 0 2vw 2vh;
+    color: var(--headingcolour);
+  }
+  
+  /* Each contact item (icon + text) */
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+  }
+  
+  /* Email and Hours text remain on one line */
+  .email p,
+  .hours p {
+    white-space: nowrap;
+    margin: 0 0 0 0.5vw;
+    font-size: small;
+    font-family: var(--contentfont);
+    font-weight: 600;
+  }
+  
+  /* Location can wrap onto multiple lines */
+  .location p {
+    white-space: normal;
+    margin: 0;
+    font-size: small;
+    font-family: var(--contentfont);
+    max-width: 15em;
+    font-weight: 600;
+  }
+  
+.email img {
+width: 3vw ;
+}
+
+.location img {
+    width: 2.7vw ;
+}
+
+.hours img {
+    width: 3vw ;
+}
+
+  /* Resize icons */
+  .contact-item img { 
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* ======================================================
+      Hero page view
+      ====================================================== */
+.opening-view-content {    
+    width: 100%;            
+    height: 65vh;
+    overflow: hidden;        
+    margin: 0;               
+    padding: 0 5vw;          
+    box-sizing: border-box;   
+  }
+  
+  .opening-view-content img {
+    position: absolute;      
+    top: 0;
+    left: 0;
+    width: 100%;            
+    height: 90vh;            
+    object-fit: cover;       
+    z-index: -1;            
+  }
+  
+  .home-title {
+    font-size: 3vw;        
+    width: 33%;
+    color: #fff;           
+    margin-bottom: 1vh;
+    font-family: var(--headingfont);
+  }
+  
+  /* Paragraph text */
+  .home-text {
+    font-size: 8;        
+    color: #fff;
+    max-width: 30vw;         
+    margin-bottom: 2vh;
+    line-height: 1.4;
+    font-family: var(--contentfont);
+  }
+  
+  /* Appointment button styling */
+  .appointment-button {
+    display: inline-block;
+    background-color: var(--headingcolour);
+    color: #ffffff;
+    padding: 0.5vh 2vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--headingfont);
+    transition: background-color 0.2s ease;
+    width: auto;
+    height: auto;
+    font-size: 2vh;
+    margin: 0;
+  }
+  
+  .appointment-button:hover {
+    background-color: #ffcc66;
+  }
+  
+  /*  
+     Adjusts on smaller screens 
+  */
+  @media (max-width: 1024px) {
+
+    .opening-view-content img {    
+        max-width: 100%;            
+        min-height: 95vh; 
+      }
+    .home-title {
+      font-size: 3vw;
+      margin-top: 10vh;
+      text-align: center;
+      width: 100%;
+    }
+    .home-text {
+      font-size: 4vh;
+      max-width: 80vw;
+      text-align: center;
+      margin: 0 auto;       
+      display: block;  
+    }
+    .appointment-button {
+        display: inline-block; 
+        margin: 0 auto;       
+        
+      }
+      
+      .opening-view-content {
+        text-align: center;   
+      }
+
+      main {
+        padding: 0vh 5% 0 5%; 
+        margin: 0;
+      }
+
+  }
+  
+  
+
+
+   /* ======================================================
+      BUSINESS OVERVIEW section
+      ====================================================== */
+      .business-overview {
+        display: flex;                
+        flex-wrap: wrap;              
+        justify-content: space-between; 
+        align-items: flex-start;       
+        gap: 2.5vw;                    
+        margin: 2rem 0; 
+        padding: 0;            
+      }
+      
+      /* The small heading (01, 02, 03) */
+      .business-overview > div h5 {
+        font-family: var(--headingfont);
+        font-size: 1.25rem;
+        color: var(--headingcolour);
+        margin-bottom: 1rem;
+      }
+      
+      /* The lines under the number */
+      .line-01-box,
+      .line-02-box,
+      .line-03-box {  
+        width: 100%;                  
+        text-align: center;            
+        display: flex;                 
+        flex-direction: column;        
+        height: 2px;
+        background-color: var(--headingcolour);
+        margin-bottom: 1rem;
+      }
+      
+      /* The icon, heading, and paragraph in each box */
+      .performance-check-box,
+      .auto-repair,
+      .mot-service {
+        background-color: black;     
+        width: 300px;
+        padding: 2vw;                 
+        text-align: center;            
+        display: flex;
+        flex-direction: column;
+        align-items: center;                          
+      }
+
+      
+      
+      /* The spanner icon  */
+      .performance-check-box img,
+      .auto-repair img,
+      .mot-service img {
+        width: 60px;                   
+        height: 60px;
+      }
+      
+      /* Box heading (e.g., performance check, auto repair) */
+      .performance-check-box h4,
+      .auto-repair h4,
+      .mot-service h4 {
+        font-family: var(--headingfont);
+        font-size: 1.2rem;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      
+      /* Box paragraph */
+      .performance-check-box p,
+      .auto-repair p,
+      .mot-service p {
+        font-family: var(--contentfont);
+        font-size: 0.875rem;
+        color: #cccccc;
+        line-height: 1.4;
+        margin: 0;
+        max-width: 80%;              
+      }
+
+
+      @media (max-width: 900px) {
+        .performance-check-box,
+        .auto-repair,
+        .mot-service {
+          width: 70vw;
+          height: auto;
+          justify-content: center;
+        }
+
+        .performance-check-box img,
+      .auto-repair img,
+      .mot-service img {
+        width: 10vw;                  
+        height: auto;
+      }
+
+      .performance-check-box h4,
+      .auto-repair h4,
+      .mot-service h4 {
+        font-size: 4vw;
+      }
+
+      .performance-check-box p,
+      .auto-repair p,
+      .mot-service p {
+        font-size: 3vw;
+      }
+      }
+
+   
+
+ /* ======================================================
+      Responsive Header: Scales using viewport units
+      ====================================================== */
+      @media (max-width: 1024px) {
+        header {
+            flex-direction: column;
+            padding: 1vw;
+            max-width: 100%;
+            min-height: 20vh;
+            height: auto;
+        }
+        .logo a {
+            padding: 0;
+        }
+        .logo img {
+            height: 6vw;
+        }
+        .page-title {
+            font-size: 3vh;
+        }
+        nav {
+            position: static;
+            width: 100%;
+            justify-content: center;
+        }
+        nav .header-menu-item,
+        nav .header-menu-item-active {
+            font-size: 1.7vw;
+            padding: 0.1vw 1.8vw;
+            padding-bottom: 1.3vh;
+            width: auto;
+        }
+        .contact-info {
+            padding-right: 0;
+            font-size: 3vw;
+            margin-bottom: 3vh;
+        }
+
+
+        .home-contact-details {display:none}
+
+    }
+
+
+/* ======================================================
+      customer satisfaction
+      ====================================================== */
+
+.customer-satisfaction {
+    width: 100%;     
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    margin: 10vh 0;               
+    padding: 0 5vw;          
+    box-sizing: border-box;  
+    gap: 10vw;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.yos h2, .hc h2, .cs h2 {
+    font-family: var(--contentfont);
+    color: var(--headingcolour);
+    font-size: auto;
+    margin-bottom: 1.3vh;
+}
+.yos h3, .hc h3, .cs h3 {
+    font-family: var(--contentfont);
+    margin: 0;
+}
+
+.customer-satisfaction.bg {
+  background-color: #B98E30;
+  height: 100%;
+  padding: 5vh 0;
+}
+
+.customer-satisfaction.bg h2 {
+  color: #fff;
+}
+
+
+
+
+/* ======================================================
+      Why choose us
+      ====================================================== */
+
+      .why-choose-us {
+        display: grid;
+        max-height: 80vh;
+        margin: 10vh auto;
+        
+      }
+
+  .wcu-left {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wcu-left p {
+    max-width: 65%;
+    font-size: 1.5vh;
+}
+   .wcu-left ul {
+    color: var(--headingcolour);
+    text-decoration: none;
+    list-style: none;
+    font-size: 2vw;
+    font-weight: bold;
+    font-family: var(--listfont);
+   }
+
+   .wcu-left li:hover {
+    color: white;
+   }
+
+   .wcu-left li {
+    padding-bottom: 2vh;
+    transition: color 0.4s ease;
+   }
+
+   .wcu-left h2 {
+    font-size: 3.5vh;
+   }
+
+   .wcu-button {
+    display: inline-block;
+    background-color: var(--headingcolour);
+    color: white;
+    padding: 1.5vh 1.5vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--headingfont);
+    transition: background-color 0.2s ease;
+    font-size: 3vw;
+    max-width: 10vw;
+    height: auto;
+    font-size: 2vh;
+    margin-bottom: 5ch;
+
+    border-radius: 5%;
+}
+
+.wcu-button:hover {
+    background-color: #ffcc66;
+}
+
+   .why-choose-us img {
+    grid-column: 2;
+    width: 100%;
+   }
+
+
+
+
+
+
+
+/* ========== Dedicated Services Section ========== */
+.dedicated-services {
+  /* 2-column grid: left for .overview, right for service boxes */
+  display: grid;
+  grid-template-columns: 35vw 1fr; 
+  gap: 2vw;                      
+  width: 100%;
+  margin: 0 auto;
+  padding: 5vh 5vw;
+  box-sizing: border-box;
+}
+
+/* ---------- Overview on the left column ---------- */
+.dedicated-services .overview {
+  grid-column: 1; 
+}
+
+.dedicated-services .overview h2 {
+  font-family: var(--headingfont);
+  font-size: 2.5vw;       
+  margin-bottom: 2vh;     
+}
+
+.dedicated-services .overview p {
+  font-family: var(--contentfont);
+  font-size: 1.2vw;       
+  color: var(--contentgrey);         /* Grey text */
+  line-height: 1.5;
+  margin-bottom: 2vh;
+  max-width: 60ch;        /* Optional: limit line length */
+}
+
+.dedicated-services .overview a {
+  font-family: var(--headingfont);
+  font-size: 1vw;         /* Smaller link text */
+  color: var(--headingcolour);         /* Gold link color */
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* ---------- Service boxes on the right column ---------- */
+.dedicated-services .service-1,
+.dedicated-services .service-2,
+.dedicated-services .service-3 {
+  grid-column: 2; 
+  display: flex;  
+  align-items: center;
+  padding: 0vh 2vw;
+  margin-bottom: 2vh; 
+
+  /* Gradient */
+  background: linear-gradient(
+    270deg,
+    black 0%,
+    rgba(16, 16, 16, 0) 100%
+  );
+  box-sizing: border-box;
+  gap: 2vw; 
+}
+
+/* The service image (left side) */
+.dedicated-services .service-1 img,
+.dedicated-services .service-2 img,
+.dedicated-services .service-3 img {
+  width: 15vw;     
+  height: auto;
+  object-fit: cover; 
+  border-radius: 6px;;
+}
+
+/* Service heading (right side) */
+.dedicated-services .service-1 h3,
+.dedicated-services .service-2 h3,
+.dedicated-services .service-3 h3 {
+  font-family: var(--headingfont);
+  font-size: 1.3vw;
+  margin-bottom: 1vh;
+}
+
+/* “View More” link under heading */
+.dedicated-services .service-1 a,
+.dedicated-services .service-2 a,
+.dedicated-services .service-3 a {
+  font-family: var(--contentfont);
+  font-size: 1vw;
+  color: var(--headingcolour);   
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================================================
+      Banner Image Section
+      ====================================================== */
+
+   
+   .banner-image-section img {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+   }
+
+    .banner-image-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   TESTIMONIALS SECTION - START
+=============================== */
+
+.testimonials.section {
+  background-color: #101010;        
+  padding: 5vh 5vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  height: 70vh;
+}
+
+.headings-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.headings-button h2 {
+  font-family: var(--headingfont);
+  font-size: 2.5vw;
+  color: white;
+  margin: 0;
+}
+
+.headings-button .buttons {
+  display: flex;
+  gap: 1vw;
+}
+
+.headings-button .buttons .button {
+  font-family: var(--contentfont);
+  color: #544c4c;
+  text-decoration: none;
+  border: 0.1vh solid #544c4c;
+  padding: 0.5vh 1vw;
+  background: black;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.headings-button .buttons .button:hover {
+  background-color: var(--headingcolour);
+  color: white;
+}
+
+/* ---------- REVIEW DISPLAY BOX ---------- */
+.review-display-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 40vh;
+  background-color: black;
+  padding: 18vh 7vw 7vh 4vw;
+  box-sizing: border-box;
+}
+
+.review-underline {
+  width: 63%;                        
+  margin-top: 0vh;                   
+  border-bottom: 0.2vh solid var(--headingcolour); 
+}
+
+
+/* ---------- TEXT CONTAINER (Left) ---------- */
+.test-txt-cont {
+  width: 55%;
+  margin-top: 3vh;         
+  padding-left: 2vw;       
+  box-sizing: border-box;
+  color: white;
+}
+
+.test-txt-cont h4 {
+  font-family: var(--headingfont);
+  font-size: 1.5vw;
+  margin: 0 0 1vh 0;
+}
+
+.test-txt-cont h5 {
+  font-family: var(--headingfont);
+  font-size: 1.2vw;
+  margin: 0 0 1vh 0;
+}
+
+.stars .fa {
+  font-size: 1.2vw;
+}
+
+.checked {
+  color: var(--headingcolour);
+}
+
+.test-txt-cont p {
+  font-family: var(--contentfont);
+  font-size: 1vw;
+  line-height: 1.5;
+  margin: 0 0 1vh 0;
+}
+
+/* ---------- IMAGE (Right) ---------- */
+.review-display-box img {
+  position: absolute;
+  top: -0.1vh;                     
+  right: -1vw;
+  width: 40%;                 
+  height: auto;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   TESTIMONIALS SECTION - END
+=============================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================================================
+      Page path section
+      ====================================================== */
+.page-path {
+  margin: 5vh 8vw;
+  border-bottom: 2px solid var(--headingcolour); 
+  padding-bottom: 2vh;           
+}
+
+/* page title */
+.page-path h1 {
+  font-size: 3vh;          
+  text-transform: uppercase;
+  margin-bottom: 1vh;      
+  font-family: var(--headingfont); 
+}
+
+/* Home/About*/
+.page-path h5 {
+  font-size: 2vh;          
+  color: var(--headingcolour);         
+  margin-bottom: 2vh;       
+  font-family: var(--contentfont); 
+}
+
+
+
+
+
+/* ===== ABOUT PARAGRAPH STYLING ===== */
+.about-content {
+  max-width: 80%;      
+  margin: 5vh auto 8vh;      
+  text-align: center;   
+  color: #ffffff;         
+}
+
+.about-content h2 {
+  font-family: var(--headingfont); 
+  font-size: 5vh;                  
+  font-weight: 700;               
+  margin-bottom: 4vh;              
+}
+
+.about-content p {
+  font-family: var(--contentfont);
+  font-size: 3.6vh;                
+  line-height: 1.5;
+  font-weight: 600;                                
+  margin: 0 auto;                  
+}
+
+
+
+
+
+/* ========== GET IN TOUCH SECTION ========== */
+.get-in-touch {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 5vh 2vw 10vh;
+  text-align: left;
+}
+
+/* Heading */
+.get-in-touch h2 {
+  font-family: var(--headingfont);
+  font-size: 3vw;      
+  margin-bottom: 2vh;
+}
+
+/* Paragraph*/
+.get-in-touch p {
+  font-family: var(--contentfont);
+  font-size: 1rem;
+  color: var(--contentgrey);      
+  line-height: 1.5;
+  margin-bottom: 3vh;
+}
+
+/* Gold button with white icon + text on one line */
+.GIT-button {
+  display: inline-flex;        
+  align-items: center;
+  background-color: #C3983A;   
+  padding: 2vh 2vw;
+  font-family: var(--headingfont);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+/* Button hover effect */
+.GIT-button:hover {
+  background-color: #ffcc66;
+}
+
+/* Icon inside the button */
+.GIT-button i {
+  font-size: 2vh;
+  margin-right: 0.5rem;
+}
+
+/* Text inside the button*/
+.GIT-button h5 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************
+  APPOINTMENT PAGE LAYOUT
+********************************/
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;  /* Optional max width, or remove if you want full width */
+  margin: 10vh auto;  /* Center container with vertical spacing from top */
+  padding: 0 5vw;
+  box-sizing: border-box;
+  gap: 5vw;           /* Space between left & right columns */
+}
+
+.appointment-info {
+  flex: 1;           /* Left side grows to fill space */
+  max-width: 40%;    /* Or a fixed ratio of the container */
+  color: #fff;       /* White text, if your background is dark */
+}
+
+.appointment-title {
+  font-family: var(--headingfont);
+  font-size: 3vw;    /* Scale heading with viewport width */
+  margin-bottom: 2vh;
+}
+
+.appointment-desc {
+  font-family: var(--contentfont);
+  font-size: 1.2vw;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+/* Right side: The form container */
+.appointment-form-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+/********************************
+  APPOINTMENT FORM STYLES
+********************************/
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+/* Each fieldset row: 2 columns except for single-column row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Two equal columns */
+  gap: 2vw;                        /* Horizontal space between fields */
+}
+
+/* Make single-column row span entire width */
+.form-row.single-column {
+  grid-template-columns: 1fr;
+}
+
+/* Field styling: match the gold outline & black background from your mockup */
+.fs-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+}
+
+/* Label styling */
+.fs-label {
+  font-family: var(--headingfont);
+  font-size: 1vw;
+  color: #c3983a; /* Gold-like color for label text */
+  text-transform: uppercase;
+}
+
+/* Input & Textarea styling with gold outline on black background */
+.fs-input,
+.fs-textarea {
+  background-color: #000;  /* Black background */
+  color: #fff;             /* White text */
+  border: 1px solid #c3983a; /* Gold border */
+  padding: 1vh 1vw;
+  font-size: 1vw;
+  font-family: var(--contentfont);
+  outline: none;
+  border-radius: 2px;
+}
+
+/* Focus effect on input/textarea */
+.fs-input:focus,
+.fs-textarea:focus {
+  border: 1px solid #ffcc66; /* Lighter gold on focus */
+}
+
+/* The text area is bigger */
+.fs-textarea {
+  min-height: 15vh;
+  resize: vertical;   /* Let user resize if needed */
+}
+
+/********************************
+  APPOINTMENT BUTTON
+********************************/
+.fs-button-group {
+  display: flex;
+  justify-content: flex-start; /* Left-align the button, or use center if you prefer */
+}
+
+.appointment-btn {
+  background-color: #c3983a;   /* Gold background */
+  color: #000;                 /* Black text */
+  font-family: var(--headingfont);
+  font-weight: 700;
+  font-size: 1vw;
+  text-transform: uppercase;
+  padding: 1vh 3vw;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.appointment-btn:hover {
+  background-color: #ffcc66;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************
+  CONTACT SECTION LAYOUT
+********************************/
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px; /* or remove if you want full width */
+  margin: 10vh auto; /* vertical spacing, centers container */
+  padding: 0 5vw;
+  box-sizing: border-box;
+  gap: 5vw;          /* space between left & right columns */
+}
+
+.contact-info {
+  flex: 1;           /* left side grows to fill space */
+  max-width: 40%;    /* or a fixed ratio */
+  color: #fff;       /* text color, adjust if needed */
+}
+
+.contact-title {
+  font-family: var(--headingfont);
+  font-size: 3vw;    /* scale heading with viewport width */
+  margin-bottom: 2vh;
+  color: #fff;       /* gold or white, etc. */
+}
+
+.contact-desc {
+  font-family: var(--contentfont);
+  font-size: 1.2vw;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+/* Right side container for the form */
+.contact-form-container {
+  
+  width: 100%;
+  max-width: 50%;
+}
+
+/********************************
+  CONTACT FORM STYLES
+********************************/
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+/* Each row: 2 columns except single-column row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2vw;
+}
+
+/* Single-column row for message */
+.form-row.single-column {
+  grid-template-columns: 1fr;
+}
+
+
+.fs-input,
+.fs-textarea {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #c3983a;
+  padding: 1vh 1vw;
+  font-size: 1vw;
+  font-family: var(--contentfont);
+  border-radius: 2px;
+}
+
+.fs-textarea {
+  min-height: 15vh;
+  resize: vertical;
+}
+
+.fs-input:focus,
+.fs-textarea:focus {
+  border: 1px solid #ffcc66;
+}
+
+*/
+
+/* Big gold button at bottom */
+.contact-btn {
+  background-color: #c3983a;
+  color: #000;
+  font-family: var(--headingfont);
+  font-weight: 700;
+  font-size: 1vw;
+  text-transform: uppercase;
+  padding: 1vh 3vw;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contact-btn:hover {
+  background-color: #ffcc66;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.map {
+  display: flex;          
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center;
+  background-color: #080808;
+  width: 100%;
+  padding-bottom: 5vh;
+  margin: 0;
+}
+
+.map h2 {
+  font-family: var(--headingfont);
+  margin-bottom: 5vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********************************
+  New Details Section
+*********************************/
+.details-section {
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  filter: drop-shadow(0px 0px 2px rgba(23, 26, 31, 0.12)) drop-shadow(0px 0px 1px rgba(23, 26, 31, 0.07));
+  /* Increase the top and bottom padding for more vertical space */
+  padding: 8vh 5vw; 
+  box-sizing: border-box;
+}
+
+.details-section-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px; /* optional container width */
+  margin: 0 auto;    /* center within the .details-section */
+  gap: 5vw;          /* space between left text & right table */
+}
+
+.details-text {
+  flex: 1;           /* left side */
+  max-width: 40%;
+  color: #fff;
+}
+
+.details-heading {
+  font-family: var(--headingfont);
+  font-size: 3vw;    /* scale with viewport width if desired */
+  margin-bottom: 2vh;
+}
+
+.details-desc {
+  font-family: var(--contentfont);
+  font-size: 1.2vw;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+/*********************************
+  Table on the Right
+*********************************/
+.details-table-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+/* The table has no border, black background, and row color patterns */
+.business-table {
+  margin-top: 10vh;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #000;  /* black table background */
+}
+
+/* Increase row height by adding vertical padding */
+.business-table td {
+  border: none;
+  padding: 5vh 2vw;  
+  height: 5vh;
+  color: #fff;
+  font-family: var(--contentfont);
+  font-size: 1rem;
+}
+
+/* Alternate row colors (slightly different shades) */
+.business-table tr:nth-child(even) {
+  background-color: #101010; /* slightly lighter than #000 */
+}
+.business-table tr:nth-child(odd) {
+  background-color: black; /* slightly lighter than #111 */
+}
+
+/* Left column text (labels) style if you want it bolder or different color */
+.business-table td:first-child {
+  font-weight: 600;
+  width: 30%; /* adjust if you want narrower label column */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   FAQ SECTION CSS - START
+============================== */
+.faq-section {
+  display: flex;
+  width: 90vw;
+  margin: 5vh auto 10vh;  
+  gap: 2vw;
+  box-sizing: border-box;
+  max-width: fit-content;
+}
+
+/* ---------- LEFT COLUMN: FAQ Items ---------- */
+.faq-left {
+  width: 50%;
+  background-color: #101010; 
+  padding: 4vh 3vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  overflow: visible;
+}
+
+.faq-section-title {
+  font-family: var(--headingfont);
+  font-size: 2.5vw;
+  color: white;
+  margin-bottom: 2vh;
+  text-align: left;
+}
+
+/* FAQ item styling */
+.faq-item {
+  background-color: black;          
+  border: 1px solid var(--headingcolour);         
+  border-radius: 0;                
+  padding: 2vh 2vw;
+  box-sizing: border-box;
+  margin-bottom: 1vh;
+  transition: all 0.3s ease;
+}
+
+/* Remove default disclosure marker */
+.faq-item summary::-webkit-details-marker { 
+  display: none;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  font-family: var(--headingfont, Arial, sans-serif);
+  font-size: 1.2vw;
+  color: #ffffff;
+  padding-right: 3vw;   /* Reserve space for custom indicator */
+  transition: color 0.2s ease;
+}
+
+/* Custom plus sign (gold) */
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2vw;
+  color: var(--headingcolour);
+}
+
+/* Change plus to minus when open */
+.faq-item[open] summary::after {
+  content: "-";
+}
+
+.faq-answer {
+  margin-top: 1vh;
+  padding-top: 1vh;
+  font-family: var(--contentfont, Arial, sans-serif);
+  font-size: 1vw;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+/* ---------- RIGHT COLUMN: Background Image + Overlay ---------- */
+.faq-right {
+  width: 40%;
+  position: relative;
+  min-height: 70vh;         /* Ensure sufficient height for the image */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Background image added via HTML */
+.faq-right .faq-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay for contact details */
+.faq-overlay {
+  position: absolute;
+  bottom: 10vh;             
+  left: 0.5vw;               
+  background-color: rgba(0, 0, 0, 0.6);  
+  padding: 2vh 2vw;
+  max-width: 90%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  z-index: 2;
+}
+
+/* Each contact row: icon + text */
+.faq-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.faq-icon-row img {
+  width: 3vh;
+  height: auto;
+  object-fit: contain;
+}
+
+.faq-icon-row p {
+  font-family: var(--contentfont);
+  font-size: 1vw;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ===============================
+   FAQ SECTION CSS - END
+============================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================================================
+      Footer Styling
+      ====================================================== */
+footer {
+  position: relative; 
+  width: 100%;
+  height: auto; 
+  background-color: black;
+  overflow: hidden; 
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* ========== EMAIL SECTION ========== */
+.footer-enter-email {
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;   
+  height: 15vh;   
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 2vw 1vh 2vw; 
+  box-sizing: border-box;
+  font-family: var(--contentfont);
+  color: #fff;
+  gap: 3vw;       
+}
+
+/* The heading text in the email section */
+.footer-enter-email h5 {
+  margin: 0 0 1vh 0;
+  font-size: 1.2vw;  /* Scales with viewport width */
+  line-height: 1.4;
+  max-width: 35vw;   /* Caps the text block width */
+  font-weight: 550;
+}
+
+/* Email input field */
+.footer-enter-email input[type="email"] {
+  width: 10vw;     
+  height: 4vh;     
+  border: 0.2vh solid var(--transparentblue);
+  background: transparent;
+  color: white;
+  padding: 0 1vw;
+  margin-bottom: 1vh;
+  font-family: var(--contentfont);
+  font-size: 2vh;
+  outline: none;
+}
+
+/* Submit button */
+.footer-submit-email {
+  background-color: var(--headingcolour);
+  color: white;
+  padding: 0.5vh 1vw;
+  width: 5vw;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+}
+
+.footer-submit-email p {
+  margin: 0;
+  font-family: var(--headingfont);
+  font-size: 1vw;
+  font-weight: 600;
+}
+
+.footer-submit-email:hover {
+  background-color: #ffcc66;
+}
+
+/*********************************
+  FOOTER LOGO & TEXT
+**********************************/
+.footer-logo-and-text {
+  margin: 5vh 0 0 4vw;
+  display: grid;
+  width: 30vw;       /* 30% of viewport width */
+  gap: 1vh;          /* Vertical/horizontal gap in vh */
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* The logo image spans two rows */
+.footer-logo-and-text img {
+  grid-row: 1 / span 2;
+  max-width: 90%;    /* Ensures it doesn’t overflow container */
+  justify-self: end;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* Heading and paragraph in second column */
+.footer-logo-and-text h4 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  justify-self: start;
+  align-items: center;
+  text-align: center;
+  font-size: 2.5vh;    
+  width: 5vw;        
+}
+
+.footer-logo-and-text p {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  justify-self: start;
+  font-size: 2vh;
+  color: var(--contentgrey);
+}
+
+/*********************************
+  FOOTER PHONE
+**********************************/
+.footer-phone {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 12vw;
+  font-family: var(--contentfont);
+  font-size: 4vh;
+  text-decoration: none;
+  width: 50vw;
+  box-sizing: border-box;
+}
+
+.footer-phone img {
+  width: 4vh;
+  height: auto;
+}
+
+/*********************************
+  FOOTER CONTACT
+**********************************/
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10vw;
+  box-sizing: border-box;
+}
+
+/* Contact heading (Location & Contact) */
+.footer-contact h5 {
+  font-size: 2vh;
+  margin: 0 0 1vh 0;
+}
+
+/* Each contact item: icon + text */
+.footer-contact .footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw; /* Space between icon and text */
+}
+
+.footer-contact .footer-contact-item img {
+  width: 2vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-contact .footer-contact-item p {
+  margin: 0;
+  font-size: 2vh;
+  line-height: 1.2;
+  color: var(--contentgrey);
+}
+
+/*********************************
+  FOOTER LINKS
+**********************************/
+.footer-links {
+  padding: 0 0 0 8vw;
+  width: 30vw;               /* 30% of viewport width */
+  text-decoration: none;
+  position: absolute;        /* Absolutely positioned */
+  top: 27vh;                 /* Sits below the .footer-enter-email area */
+  left: 70vw;                /* Shifted to the right side */
+  float: right;
+  display: flex;
+  margin-top: 5vh;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 3vw;
+  box-sizing: border-box;
+}
+
+/* Each Column in the Footer Links */
+.footer-links > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  max-width: 20vw;
+  box-sizing: border-box;
+}
+
+/* Quicklinks lists */
+.qlinks-1 ul,
+.qlinks-2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links li {
+  padding: 0.5vh 0;
+}
+
+.footer-links li a {
+  color: var(--contentgrey);
+  font-size: 2vh;
+}
+
+.footer-links li a:hover {
+  color: white;
+}
+
+/* Common menu item styling */
+.footer-menu-item {
+  text-decoration: none;
+  color: #fff;
+}
+
+/*********************************
+  HEADINGS (Quicklinks, etc.)
+**********************************/
+.qlinks-1 h5,
+.qlinks-2 h5,
+.footer-contact h5 {
+  font-size: 2vh;
+  margin: 0 0 1vh 0;
+}
+
+.copyright {
+  font-size: 2vh;
+}
+
+
+
+
+
