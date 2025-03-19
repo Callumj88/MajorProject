@@ -5,36 +5,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/css.css') }}">
-        <title>Home</title>
+        <title>{{ $pageTitle }}</title>
     </head>
     <body>
 
         <header>
             <div class="logo">
-                <a href="index.html">
+                <a href="{{ url('/') }}">
                     <img src="images/logo.jpg" alt="Powells Automotive's logo">
                     <h2 class="page-title">Powells Automotive</h2>
                 </a>
             </div>
             <nav>
+                
                 <ul class="nav-links">
+                    <!-- TODO - make a for loop to add all pages to the menu, and adjust styling to accomodate this  -->
                     <li><a href="{{ url('/') }}" class="header-menu-item-active">Home</a></li>
                     <li><x-nav-link href="{{ url('/about') }}" class="header-menu-item">About</x-nav-link></li>
-                    <li><a href="services.html" class="header-menu-item">Services</a></li>
-                    <li><a href="testimonials.html" class="header-menu-item">Testimonials</a></li>
-                    <li><a href="faq.html" class="header-menu-item">FAQ</a></li>
-                    <li><a href="appointment.html" class="header-menu-item">Appointment</a></li>
-                    <li><a href="{{ url('/contact') }}" class="header-menu-item">Contact Us</a></li>
+                    <li><x-nav-link href="{{ url('/services') }}" class="header-menu-item">Services</x-nav-link></li>
+                    <li><x-nav-link href="{{ url('/testimonials') }}" class="header-menu-item">Testimonials</x-nav-link></li>
+                    <li><x-nav-link href="{{ url('/faq') }}" class="header-menu-item">FAQ</x-nav-link></li>
+                    <li><x-nav-link href="{{ url('/appointment') }}" class="header-menu-item">Appointment</x-nav-link></li>
+                    <li><x-nav-link href="{{ url('/contact') }}" class="header-menu-item">Contact Us</x-nav-link></li>
                 </ul>
             </nav>
             <div class="contact-info">
                 
-                <a href="contact-us.html"><span class="phone-icon"><img src="images/gold-phone.png" alt="gold phone icon"></span></a>
-                <a href="contact-us.html"><span class="phone-number">(856) 492-7602</span></a>
+                <a href="{{ url('/contact') }}"><span class="phone-icon"><img src="images/gold-phone.png" alt="gold phone icon"></span></a>
+                <a href="{{ url('/contact') }}"><span class="phone-number">(856) 492-7602</span></a>
                 
             </div>
         </header>
-
+        
+        <!--Page path section-->
+        @if(!isset($pageTitle) || $pageTitle !== 'Home')
+            <!-- This code only runs if $pageTitle is NOT "Home" -->
+            <div class="page-path">
+                <h1>{{ $pageTitle }}</h1>
+                <h5>Home/{{ $pageTitle }}</h5>
+            </div>
+        @endif
 
         
         <main>
@@ -87,20 +97,20 @@
                 <div class="qlinks-1">
                     <h5>Quick Links</h5>
                     <ul>
-                        <li><a href="index.html" class="footer-menu-item">Home</a></li>
-                        <li><a href="about.html" class="footer-menu-item">About</a></li>
-                        <li><a href="services.html" class="footer-menu-item">Services</a></li>
-                        <li><a href="testimonials.html" class="footer-menu-item">Testimonials</a></li>
+                        <li><a href="{{ url('/') }}" class="footer-menu-item">Home</a></li>
+                        <li><a href="{{ url('/about') }}" class="footer-menu-item">About</a></li>
+                        <li><a href="{{ url('/services') }}" class="footer-menu-item">Services</a></li>
+                        <li><a href="{{ url('/testimonials') }}" class="footer-menu-item">Testimonials</a></li>
                     </ul>
                 </div>
 
                 <div class="qlinks-2">
                     <h5>Quick Links</h5>
                     <ul>
-                        <li><a href="appointment.html" class="footer-menu-item">Appointment</a></li>
-                        <li><a href="faq.html" class="footer-menu-item">Questions</a></li>
-                        <li><a href="contact-us.html" class="footer-menu-item">Contact us</a></li>
-                        <li><a href="Login.html" class="footer-menu-item">Login</a></li>
+                        <li><a href="{{ url('/appointment') }}" class="footer-menu-item">Appointment</a></li>
+                        <li><a href="{{ url('/faq') }}" class="footer-menu-item">Questions</a></li>
+                        <li><a href="{{ url('/contact') }}" class="footer-menu-item">Contact us</a></li>
+                        <li><a href="{{ url('/login') }}" class="footer-menu-item">Login</a></li>
                     </ul>
                 </div>
 

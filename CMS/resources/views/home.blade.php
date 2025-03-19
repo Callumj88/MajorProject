@@ -1,5 +1,4 @@
-<x-layout>
-
+<x-layout :pageTitle="$pageTitle">
 
 
 </x-layout>

@@ -2,14 +2,33 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+//TODO: make routes work with new pages
+
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['pageTitle' => 'Home']);
 });
 
 Route::get('/about', function () {
-    return view('about');
+    return view('about', ['pageTitle' => 'About Us']);
 });
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('contact', ['pageTitle' => 'Contact Us']);
+});
+
+Route::get('/services', function () {
+    return view('services', ['pageTitle' => 'Services']);
+});
+
+Route::get('/testimonials', function () {
+    return view('testimonials', ['pageTitle' => 'Testimonials']);
+});
+
+Route::get('/faq', function () {
+    return view('faq', ['pageTitle' => 'Frequently Asked Questions']);
+});
+
+Route::get('/appointment', function () {
+    return view('appointment', ['pageTitle' => 'Appointment Booking']);
 });
