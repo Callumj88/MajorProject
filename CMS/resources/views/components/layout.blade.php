@@ -19,7 +19,7 @@
             <nav>
                 
                 <ul class="nav-links">
-                    <!-- TODO - make a for loop to add all pages to the menu, and adjust styling to accomodate this  -->
+                    <!-- TODO: make a for loop to add all pages to the menu, and adjust styling to accomodate this  -->
                     <li><x-nav-link href="{{ url('/') }}" class="header-menu-item-active">Home</x-nav-link></li>
                     <li><x-nav-link href="{{ url('/about') }}" class="header-menu-item">About</x-nav-link></li>
                     <li><x-nav-link href="{{ url('/services') }}" class="header-menu-item">Services</x-nav-link></li>
