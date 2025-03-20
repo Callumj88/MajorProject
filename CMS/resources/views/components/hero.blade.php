@@ -7,20 +7,19 @@
               <!-- Email -->
               <div class="contact-item email">
                 <img src="images/gold-email.png" alt="gold email icon">
-                <p>andreasanchez@gmail.com</p>
+                <p>{{ businessContact(key: 'email') }}</p>
               </div>
           
               <!-- Location -->
               <div class="contact-item location">
                 <img src="images/gold-location-pin.png" alt="gold location pin icon">
-                <p>Unit 16 Vale supplier, park, 
-                   Resolven, Neath SA11 4SR</p>
+                <p>{{ businessContact('address') }}</p>
               </div>
           
               <!-- Opening Hours -->
               <div class="contact-item hours">
                 <img src="images/gold-calender.png" alt="gold calendar icon">
-                <p>Mon - Sat: Open 9:00 - 18:00</p>
+                <p>{{ businessContact('openingTimes') }}</p>
               </div>
           
             </div> 

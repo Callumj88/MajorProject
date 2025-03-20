@@ -37,6 +37,9 @@
         flex-direction: column; 
         justify-content: center;                   
     }
+    main:empty {
+      display: none;
+    }
    
    /* ======================================================
       Header Styling
@@ -858,12 +861,14 @@ width: 3vw ;
   background-color: black;
   padding: 18vh 7vw 7vh 4vw;
   box-sizing: border-box;
+  margin-bottom: 5vh;
 }
 
 .review-underline {
   width: 63%;                        
   margin-top: 0vh;                   
   border-bottom: 0.2vh solid var(--headingcolour); 
+  margin-bottom: 10vh;
 }
 
 
