@@ -1,19 +1,23 @@
-<x-layout :pageTitle="$pageTitle">
+@extends('layouts.app')
 
-<x-hero></x-hero>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-<x-business-overview></x-business-overview>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-<x-why-choose-us></x-why-choose-us>
-
-<x-dedicated-services></x-dedicated-services>
-
-<x-banner-image></x-banner-image>
-
-<x-customer-satisfaction></x-customer-satisfaction>
-
-<x-testimonials></x-testimonials>
-
-
-
-</x-layout>
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
