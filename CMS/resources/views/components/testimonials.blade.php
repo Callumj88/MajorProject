@@ -1,4 +1,4 @@
-<!-- ========== TESTIMONIALS SECTION ========== -->
+<!-- ========== TESTIMONIALS SECTION ========== --
 <div class="testimonials section">
     <div class="headings-button">
       <h2>SEE WHAT OUR SATISFIED CUSTOMERS SAY</h2>
@@ -29,3 +29,7 @@
     <div class="review-underline"></div>
   </div>
   <!-- ========== END OF TESTIMONIALS SECTION ========== -->
+
+
+  <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+<div class="elfsight-app-d5851357-df55-4029-8df6-4693866bae5c" data-elfsight-app-lazy></div>

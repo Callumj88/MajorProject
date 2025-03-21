@@ -4,6 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+        
         <link rel="stylesheet" type="text/css" href="{{ asset('css/css.css') }}">
         <link rel="icon" type="image/png" href="{{ asset('images/garage-logo-nb.png') }}">
         <title>{{ $pageTitle }}</title>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 //TODO: make routes work with new pages
@@ -35,6 +36,8 @@ Route::get('/appointment', function () {
     return view('appointment', ['pageTitle' => 'Appointment Booking']);
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Auth::routes();
+
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
