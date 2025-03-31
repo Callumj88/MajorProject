@@ -18,19 +18,19 @@
               <tbody>
                 <tr>
                   <td>Mail:</td>
-                  <td>example1@email.com<br>crasauto@email.com</td>
+                  <td>{{ businessContact('email') }}<br>{{ businessContact('email2') }}</td>
                 </tr>
                 <tr>
                   <td>Location:</td>
-                  <td>1234 North Avenue, Dallas, TX 75204</td>
+                  <td>{{ businessContact(key: 'address') }}</td>
                 </tr>
                 <tr>
                   <td>Phone:</td>
-                  <td>(555) 123-4567</td>
+                  <td>{{ businessContact(key: 'phone') }}</td>
                 </tr>
                 <tr>
                   <td>Open Hours:</td>
-                  <td>Mon - Sat: Open 9 - 18:00</td>
+                  <td>{{ businessContact('openingTimes') }}</td>
                 </tr>
               </tbody>
             </table>

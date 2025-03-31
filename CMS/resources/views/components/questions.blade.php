@@ -66,19 +66,19 @@
         <div class="faq-overlay">
         <div class="faq-icon-row">
             <img src="images/gold-phone.png" alt="Phone Icon">
-            <p>(856) 492-7602</p>
+            <p>{{ businessContact('phone') }}</p>
         </div>
         <div class="faq-icon-row">
             <img src="images/gold-email.png" alt="Email Icon">
-            <p>andreasanchez@gmail.com</p>
+            <p>{{ businessContact(key: 'email') }}</p>
         </div>
         <div class="faq-icon-row">
             <img src="images/gold-location-pin.png" alt="Location Icon">
-            <p>Unit 16 Vale supplier, park,<br>Resolven, SA11 4SR</p>
+            <p>{{ businessContact('address') }}</p>
         </div>
         <div class="faq-icon-row">
             <img src="images/gold-calender.png" alt="Calendar Icon">
-            <p>Mon - Sat: Open 9:00 - 18:00</p>
+            <p>{{ businessContact('openingTimes') }}</p>
         </div>
         </div>
   </div>

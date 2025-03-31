@@ -1,7 +1,12 @@
-@props(['active' => false])
+@props(['active' => false]) {{-- to check if this is the   curtent page --}}
 
-<?php
-    $classes = $active ? 'header-menu-item-active' : 'header-menu-item';
-?>
+@php
+    $classes = $active
+        ? 'header-menu-item-active'
+        : 'header-menu-item';
+@endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }}> {{ $slot }} </a>
+<!-- Reusable nav link component -->
+<a {{ $attributes->merge(['class' => $classes]) }}>
+    {{ $slot }} 
+</a>

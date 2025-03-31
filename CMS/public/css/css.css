@@ -1918,8 +1918,8 @@ footer {
   width: 30vw;               /* 30% of viewport width */
   text-decoration: none;
   position: absolute;        /* Absolutely positioned */
-  top: 27vh;                 /* Sits below the .footer-enter-email area */
-  left: 70vw;                /* Shifted to the right side */
+  top: 27vh;                 
+  left: 70vw;                
   float: right;
   display: flex;
   margin-top: 5vh;
@@ -1981,5 +1981,45 @@ footer {
 
 
 
+/*Quill style support patch */ 
 
+    /* Alignment */
+    .ql-align-center {
+        text-align: center;
+    }
 
+    .ql-align-right {
+        text-align: right;
+    }
+
+    .ql-align-left {
+        text-align: left;
+    }
+
+    /* Font Sizes */
+    .ql-size-small {
+        font-size: 0.75em;
+    }
+
+    .ql-size-large {
+        font-size: 1.5em;
+    }
+
+    .ql-size-huge {
+        font-size: 2.5em;
+    }
+
+    /* Respect inline text color */
+    .ql-editor, .ql-editor * {
+        color: inherit !important;
+    }
+
+    [style*="color:"] {
+        color: inherit !important;
+    }
+
+    /* Default paragraph spacing */
+    .ql-editor p,
+    main p {
+        margin: 0.5em 0;
+    }

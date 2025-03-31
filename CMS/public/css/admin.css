@@ -1,0 +1,97 @@
+.section-panel {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background-color: #f8f8f8;
+}
+
+.section-select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+
+/* admin.css */
+
+/* General body styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 240px;
+    background-color: #101010; /* Dark sidebar background */
+    min-height: 100vh;
+    color: #ffffff;
+    padding: 1rem 0;
+}
+
+/* User info block in sidebar */
+.sidebar .user-info-section {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.sidebar .user-info-section .small-logo img {
+    max-width: 50px;
+    height: auto;
+}
+
+.sidebar .user-info-section .user-name {
+    margin: 0.5rem 0;
+    font-weight: bold;
+}
+
+.sidebar .user-info-section .logout-button {
+    cursor: pointer;
+    background-color: #ADD8E6; /* Light blue background */
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Navigation links styling in sidebar */
+.sidebar .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-links li {
+    margin: 0;
+}
+
+.sidebar .nav-links li a {
+    display: block;
+    padding: 0.7rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.sidebar .nav-links li a:hover {
+    background-color: #404040;
+}
+
+/* Top header styling */
+.top-header {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-header .page-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.3rem;
+    display: inline-block;
+}
+
+/* Main content area styling */
+.content-area {
+    padding: 1.5rem;
+}

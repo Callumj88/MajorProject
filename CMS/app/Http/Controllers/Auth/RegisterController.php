@@ -4,69 +4,77 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
-    use RegistersUsers;
+    // Where to redirect after registration
+    protected $redirectTo = '/users';
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('guest');
+        // Only allow access to this controller if the user is already logged in
+        $this->middleware('auth');
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * Show the registration form to logged-in users
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    /**
+     * Handle the registration request
+     */
+    public function register(Request $request)
+    {
+        // Validate the data using the validator below
+        $this->validator($request->all())->validate();
+
+        // Create user using the method below
+        $user = $this->create($request->all());
+
+        //  send verification email.  works for my account, need to pay for smtp email provider for others
+        //event(new Registered($user));
+
+        // just redirect back
+        return redirect()->route('users')->with('success', 'User registered successfully.');    }
+
+    /**
+     * Validate the incoming data
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'firstName' => ['required', 'string', 'max:100'],
+            'lastName' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:150', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['nullable', 'string', 'max:50'],
         ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
+     * Actually create the user in the DB
      */
     protected function create(array $data)
     {
+        $authLevel = isset($data['is_admin']) ? 1 : 0;
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'firstName'  => $data['firstName'],
+            'lastName'   => $data['lastName'],
+            'email'      => $data['email'],
+            'password'   => Hash::make($data['password']),
+            'authLevel'  => $authLevel,
+            'role'       => $data['role'] ?? null,
         ]);
     }
 }

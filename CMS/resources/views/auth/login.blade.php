@@ -1,15 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">Powells Automotive staff login</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <div class="text-center mb-4">
+                            <p>click image to go back</p>
+                            <a href="{{ url('/') }}" style="display: inline-block;">
+                                <img src="{{ asset('images/logo.jpg') }}" class="img-fluid" alt="Powells Automotive Logo">
+                            </a>
+                            <h2>Staff Login</h2>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>

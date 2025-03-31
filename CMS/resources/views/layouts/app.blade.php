@@ -1,80 +1,85 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Powells Automotive</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <div id="app" class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            @auth
+            <div class="user-info-section">
+                <div class="business-name">
+                    <a href="{{ url('/home') }}"
+                        style="text-decoration: none; color: inherit;"
+                        onmouseover="this.style.textDecoration='underline';"
+                        onmouseout="this.style.textDecoration='none';">
+                            <h4>Powells Automotive</h4>
+                        </a> 
                 </div>
+                <!-- Small Logo -->
+                <div class="small-logo">
+                    <a href="{{ url('/home') }}">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Logo">
+                    </a>
+                </div>
+                <!-- User's Full Name -->
+                <div class="user-name">
+                    {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
+                </div>
+                <!-- Logout Button -->
+                <div class="logout-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
-        </nav>
+            @endauth
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            @guest
+            <div class="user-info-section">
+                <a href="{{ route('login') }}" style="color: #ffffff; text-decoration: none;">Login</a>
+            </div>
+            @endguest
+
+            <!-- Navigation -->
+            <ul class="nav-links">
+                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url('/pages') }}">Pages</a></li>
+                <li><a href="{{ url('/sections') }}">Sections</a></li>
+                <li><a href="{{ url('/users') }}">Users</a></li>
+                <li><a href="{{ url('/calendar') }}">Calendar/Schedule</a></li>
+              <!--  <li><a href="#">Tickets (not in prototype)</a></li>
+                <li><a href="#">Invoices/Reports(not in prototype)</a></li>  -->
+            </ul>
+        </div>
+        <!-- End Sidebar -->
+
+        <!-- Main Content -->
+        <div class="flex-grow-1">
+            <div class="top-header">
+                <h1 class="page-title">
+                    @yield('pageTitle', 'Dashboard')
+                </h1>
+            </div>
+            <div class="content-area">
+                @yield('content')
+            </div>
+        </div>
     </div>
+
+    @stack('scripts')
 </body>
 </html>

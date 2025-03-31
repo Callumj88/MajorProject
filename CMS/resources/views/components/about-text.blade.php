@@ -5,4 +5,4 @@
                     we can being good priced and a keeping high standard of work. We undertake all aspects of work in the motor 
                     industry, tyres, servicing, clutches, exhaust, battery’s , diagnostic and mots</p>
             </div>
-            <!--end about page paragraph-->
+<!--end about page paragraph-->
