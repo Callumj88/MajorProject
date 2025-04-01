@@ -60,6 +60,8 @@
                 <li><a href="{{ url('/pages') }}">Pages</a></li>
                 <li><a href="{{ url('/sections') }}">Sections</a></li>
                 <li><a href="{{ url('/users') }}">Users</a></li>
+                <li><a href="{{ url('/customers') }}">Customers</a></li>
+                <li><a href="{{ url('/vehicles') }}">Vehicles</a></li>
                 <li><a href="{{ url('/calendar') }}">Calendar/Schedule</a></li>
               <!--  <li><a href="#">Tickets (not in prototype)</a></li>
                 <li><a href="#">Invoices/Reports(not in prototype)</a></li>  -->

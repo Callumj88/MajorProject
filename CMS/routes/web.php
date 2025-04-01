@@ -330,17 +330,19 @@ Route::post('/register', [RegisterController::class, 'register']);
 */
 
 
+
+// Show the calendar view for staff/admins
 Route::get('/calendar', function () {
     return view('auth.calendar.calendar')->with('pageTitle', 'Appointments Calendar');
 })->name('calendar');
 
+// API endpoint for calendar to fetch appointment data (used in JS calendar)
 Route::get('/calendar/data', function () {
     $appointments = DB::table('appointments')
         ->leftJoin('customers', 'appointments.customerID', '=', 'customers.id')
         ->leftJoin('vehicles', 'vehicles.customerID', '=', 'customers.id')
         ->select(
             'appointments.id',
-            'appointments.customerID',
             DB::raw("DATE(appointments.appointmentDate) as date"),
             'appointments.appointmentTime',
             'appointments.message',
@@ -354,64 +356,108 @@ Route::get('/calendar/data', function () {
         ->get();
 
     $events = $appointments->map(function ($a) {
-        $date = $a->date ?? now()->format('Y-m-d');
-        $time = $a->appointmentTime ?? '00:00:00';
-
-        $start = Carbon::parse("{$date} {$time}");
+        $start = Carbon::parse("{$a->date} {$a->appointmentTime}");
         $end = (clone $start)->addHour();
-
-        $title = $a->customerName ?? 'unknown name'; // needs to be fixed in final version
-
-        $vehicleInfo = trim("{$a->make} {$a->model} {$a->year}");
-        $contactInfo = trim("{$a->phone} / {$a->email}");
-
-        $description = $a->message ?? '';
-
 
         return [
             'id'          => $a->id,
-            'title'       => $title,
+            'title'       => $a->customerName ?? 'Unknown',
             'start'       => $start->toIso8601String(),
             'end'         => $end->toIso8601String(),
-            'description' => $description,
-            'contact'     => $contactInfo,
-            'vehicle'     => $vehicleInfo,
+            'description' => $a->message ?? '',
+            'contact'     => trim("{$a->phone} / {$a->email}"),
+            'vehicle'     => trim("{$a->make} {$a->model} {$a->year}"),
         ];
     });
 
     return response()->json($events);
 })->name('calendar.data');
 
-//route to delete a value from the calendar
+// Handle storing new appointment from public form
+Route::post('/appointments', function (Request $request) {
+    // Full validation with specific rules for phone and date
+    $validated = $request->validate([
+        'first_name'        => 'required|string|max:100',
+        'last_name'         => 'required|string|max:100',
+        'email'             => 'required|email|max:255',
+        'phone'             => ['required', 'regex:/^\d{11}$/'], // Must be exactly 11 digits
+        'vehicle_make'      => 'nullable|string|max:100',
+        'vehicle_model'     => 'nullable|string|max:100',
+        'vehicle_year'      => 'nullable|integer|min:1900|max:' . now()->year, // Can’t be in the future
+        'appointment_date'  => 'required|date|after:today', // Must be a future date
+        'appointment_time'  => 'required|date_format:H:i', // Valid 24h format
+        'message'           => 'nullable|string|max:1000',
+    ]);
+
+    // Step 1: Save the customer
+    $customerId = DB::table('customers')->insertGetId([
+        'firstName'   => $validated['first_name'],
+        'lastName'    => $validated['last_name'],
+        'email'       => $validated['email'],
+        'phone'       => $validated['phone'],
+        'created_at'  => now(),
+        'updated_at'  => now(),
+    ]);
+
+    // Step 2: Save vehicle if any field is filled in
+    if (
+        $validated['vehicle_make'] || 
+        $validated['vehicle_model'] || 
+        $validated['vehicle_year']
+    ) {
+        DB::table('vehicles')->insert([
+            'customerID' => $customerId,
+            'make'       => $validated['vehicle_make'],
+            'model'      => $validated['vehicle_model'],
+            'year'       => $validated['vehicle_year'],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+
+    // Step 3: Combine date and time for appointment
+    $datetime = Carbon::createFromFormat('Y-m-d H:i', $validated['appointment_date'] . ' ' . $validated['appointment_time']);
+
+    // Step 4: Save appointment
+    DB::table('appointments')->insert([
+        'customerID'      => $customerId,
+        'appointmentDate' => $datetime, // Stored as datetime
+        'appointmentTime' => $validated['appointment_time'], // Also stored separately
+        'message'         => $validated['message'] ?? null,
+        'created_at'      => now(),
+        'updated_at'      => now(),
+    ]);
+
+    return redirect()->back()->with('success', 'Appointment successfully booked!');
+})->name('appointments.store');
+
+// Allow staff to delete appointment from calendar
 Route::delete('/calendar/delete/{id}', function ($id) {
     DB::table('appointments')->where('id', $id)->delete();
-
     return response()->json(['success' => true]);
 })->name('calendar.delete');
 
-
-
-// Added this route to fix RouteNotFoundException need to test it later
+// Alternative JS-based calendar appointment creation
 Route::post('/calendar/store', function (Request $request) {
     $data = json_decode($request->getContent(), true);
 
+    // Basic validation
     if (!isset($data['title']) || !isset($data['start'])) {
-        return response()->json(['success' => false, 'error' => 'Invalid data'], 400);
+        return response()->json(['success' => false, 'error' => 'Missing required fields.'], 400);
     }
 
-    // Match customer by name or default to ID 0
+    // Lookup customer by name
     $customer = DB::table('customers')
         ->where(DB::raw("CONCAT(firstName, ' ', lastName)"), $data['title'])
         ->first();
 
     $customerId = $customer->id ?? 0;
-
     $date = date('Y-m-d', strtotime($data['start']));
     $time = date('H:i:s', strtotime($data['start']));
 
     DB::table('appointments')->insert([
         'customerID'      => $customerId,
-        'appointmentDate' => $date,
+        'appointmentDate' => "{$date} {$time}",
         'appointmentTime' => $time,
         'message'         => $data['description'] ?? null,
         'created_at'      => now(),
@@ -420,7 +466,46 @@ Route::post('/calendar/store', function (Request $request) {
 
     return response()->json(['success' => true]);
 })->name('calendar.store');
-});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Customer & Vehicle Management Routes
+|--------------------------------------------------------------------------
+*/
+
+// Show all customers in a styled table view
+Route::get('/customers', function () {
+    $customers = DB::table('customers')->get();
+    return view('auth.customers.customers', compact('customers'))->with('pageTitle', 'Manage Customers');
+})->name('customers');
+
+// Delete a customer by ID (with confirm on view)
+Route::delete('/customers/{id}', function ($id) {
+    DB::table('customers')->where('id', $id)->delete();
+    return redirect()->route('customers')->with('success', 'Customer deleted.');
+})->name('customers.destroy');
+
+// Show all vehicles in a styled table view
+Route::get('/vehicles', function () {
+    $vehicles = DB::table('vehicles')->get();
+    return view('auth.vehicles.vehicles', compact('vehicles'))->with('pageTitle', 'Manage Vehicles');
+})->name('vehicles');
+
+// Delete a vehicle by ID (with confirm on view)
+Route::delete('/vehicles/{id}', function ($id) {
+    DB::table('vehicles')->where('id', $id)->delete();
+    return redirect()->route('vehicles')->with('success', 'Vehicle deleted.');
+})->name('vehicles.destroy');
+
+
+
+
+
+
+
+});// end of auth middleware
 
 /*
 |--------------------------------------------------------------------------
@@ -429,7 +514,7 @@ Route::post('/calendar/store', function (Request $request) {
 */
 Route::middleware(['auth', 'verified'])->group(function () {
     //when email smtp is paid for or a free alternative is found move all non dashboard routes here.  
-    //current version only works for my email so only i can be authorised
+    //current version only works for my email so only 1 can be authorised has ben tested and works
     
 });
 
@@ -439,8 +524,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-//when email smtp is paid for or a free alternative is found move all edit/create/delete/user routes here
-//current version only works for my email so only i can be authorised
+//before final version move all edit/create/delete/user routes here has ebhen tested and it works
 
 });
 
@@ -452,5 +536,6 @@ Route::get('/', function () {
 
 
 Route::get('/{pageTitle}', [PageController::class, 'show'])
-     ->where('pageTitle', '[A-Za-z0-9\-]+');
+    ->where('pageTitle', '.*');
+
      

@@ -1,54 +1,83 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'User Management')
+@section('pageTitle', 'Manage Users')
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">Manage Users</h2>
+    <h2 class="mb-3">Manage Users</h2>
 
-    {{-- Button to go to Laravel's default registration --}}
-    <a href="{{ url('/register') }}" class="btn btn-success mb-3">Create New User</a>
+    {{-- Button to add a new user --}}
+    <a href="{{ route('register') }}" class="btn btn-primary mb-3">Add New User</a>
 
-    {{-- User table --}}
-    <table class="table table-bordered table-striped">
-        <thead>
+    {{-- Success message after update/delete --}}
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    {{-- Table for listing all users --}}
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
             <tr>
-                <th>First</th>
-                <th>Last</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
-                <th>Email Verified</th>
-                <th>Admin</th>
+                <th>Auth Level</th>
                 <th>Role</th>
                 <th>Created</th>
                 <th>Updated</th>
-                <th>Actions</th>
+                <th>Actions</th> {{-- Edit/Delete --}}
             </tr>
         </thead>
         <tbody>
-        @foreach ($users as $user)
-            <tr>
-                <td>{{ $user->firstName }}</td>
-                <td>{{ $user->lastName }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->email_verified_at ?? 'No' }}</td>
-                <td>
-                    <input type="checkbox" disabled {{ $user->authLevel == 1 ? 'checked' : '' }}>
-                </td>
-                <td>{{ $user->role ?? '—' }}</td>
-                <td>{{ $user->created_at ? \Carbon\Carbon::parse($user->created_at)->format('Y-m-d') : '—' }}</td>
-                <td>{{ $user->updated_at ? \Carbon\Carbon::parse($user->updated_at)->format('Y-m-d') : '—' }}</td>
-                <td>
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
+            @foreach ($users as $user)
+                <tr>
+                    {{-- Unique user ID --}}
+                    <td>{{ $user->id }}</td>
 
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline"
-                          onsubmit="return confirm('Are you sure?');">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
+                    {{-- User's first and last name --}}
+                    <td>{{ $user->firstName }}</td>
+                    <td>{{ $user->lastName }}</td>
+
+                    {{-- Contact email --}}
+                    <td>{{ $user->email }}</td>
+
+                    {{-- Auth level (1 = admin, 0 = normal user) --}}
+                    <td>
+                        @if ($user->authLevel)
+                            <span class="badge bg-primary">Admin</span>
+                        @else
+                            <span class="badge bg-secondary">User</span>
+                        @endif
+                    </td>
+
+                    {{-- Optional role title --}}
+                    <td>{{ $user->role ?? '-' }}</td>
+
+                    {{-- Timestamps --}}
+                    <td>{{ \Carbon\Carbon::parse($user->created_at)->format('Y-m-d H:i') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($user->updated_at)->format('Y-m-d H:i') }}</td>
+
+                    {{-- Action buttons --}}
+                    <td>
+                        {{-- Edit link --}}
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                        {{-- Block deleting own account with a ID match --}}
+                        @if(auth()->id() !== $user->id)
+                            {{-- Delete and confirmation prompt --}}
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                            </form>
+                        @else
+                            {{-- Prevent admin self-deletion by blocking button --}}
+                            <span class="badge bg-info text-dark">You</span>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
