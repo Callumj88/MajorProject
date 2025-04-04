@@ -175,12 +175,13 @@
    .contact-info {
        display: flex;
        align-items: center;
-       gap: 0.5vw;                        /* Space between icon and text */
+       gap: 0.5vw;                       
        font-family: var(--headingfont);
        color: var(--headingcolour);
        font-size: 2.5vh;
        padding-right: 10%;
        text-decoration: none;
+       flex: 0 0 auto;
    }
 
    .contact-info a {
@@ -326,7 +327,7 @@ width: 3vw ;
   }
   
   /*  
-     Adjusts on smaller screens 
+     Adjusts on smaller screens TODO - merge with other dsection below wqith same resaolution
   */
   @media (max-width: 1024px) {
 
@@ -424,7 +425,7 @@ width: 3vw ;
         height: 60px;
       }
       
-      /* Box heading (e.g., performance check, auto repair) */
+      /* Box heading */
       .performance-check-box h4,
       .auto-repair h4,
       .mot-service h4 {
@@ -480,7 +481,7 @@ width: 3vw ;
    
 
  /* ======================================================
-      Responsive Header: Scales using viewport units
+      Responsive Header for lower vresolution
       ====================================================== */
       @media (max-width: 1024px) {
         header {
@@ -668,16 +669,16 @@ width: 3vw ;
 .dedicated-services .overview p {
   font-family: var(--contentfont);
   font-size: 1.2vw;       
-  color: var(--contentgrey);         /* Grey text */
+  color: var(--contentgrey);         
   line-height: 1.5;
   margin-bottom: 2vh;
-  max-width: 60ch;        /* Optional: limit line length */
+  max-width: 60ch;      
 }
 
 .dedicated-services .overview a {
   font-family: var(--headingfont);
-  font-size: 1vw;         /* Smaller link text */
-  color: var(--headingcolour);         /* Gold link color */
+  font-size: 1vw;         
+  color: var(--headingcolour);         
   text-decoration: none;
   font-weight: 700;
 }
@@ -733,36 +734,6 @@ width: 3vw ;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ======================================================
       Banner Image Section
       ====================================================== */
@@ -779,25 +750,6 @@ width: 3vw ;
       justify-content: center;
       align-items: center;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ===============================
@@ -924,48 +876,6 @@ width: 3vw ;
 =============================== */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ======================================================
       Page path section
       ====================================================== */
@@ -1046,7 +956,7 @@ width: 3vw ;
   margin-bottom: 3vh;
 }
 
-/* Gold button with white icon + text on one line */
+/* Gold button with icon + text on one line */
 .GIT-button {
   display: inline-flex;        
   align-items: center;
@@ -1078,29 +988,6 @@ width: 3vw ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /********************************
   APPOINTMENT PAGE LAYOUT
 ********************************/
@@ -1109,17 +996,21 @@ width: 3vw ;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  max-width: 1200px;  /* Optional max width, or remove if you want full width */
-  margin: 10vh auto;  /* Center container with vertical spacing from top */
+  max-width: 1200px;  
+  margin: 10vh auto;  
   padding: 0 5vw;
   box-sizing: border-box;
-  gap: 5vw;           /* Space between left & right columns */
+  gap: 5vw;           
 }
 
+fieldset {
+  border: none;
+}
+
+
 .appointment-info {
-  flex: 1;           /* Left side grows to fill space */
-  max-width: 40%;    /* Or a fixed ratio of the container */
-  color: #fff;       /* White text, if your background is dark */
+  flex: 1;           
+  max-width: 40%;    
 }
 
 .appointment-title {
@@ -1150,11 +1041,11 @@ width: 3vw ;
   gap: 2vh;
 }
 
-/* Each fieldset row: 2 columns except for single-column row */
+/* 2 columns except for single-column row */
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;  /* Two equal columns */
-  gap: 2vw;                        /* Horizontal space between fields */
+  grid-template-columns: 1fr 1fr;  
+  gap: 2vw;                        /
 }
 
 /* Make single-column row span entire width */
@@ -1162,7 +1053,7 @@ width: 3vw ;
   grid-template-columns: 1fr;
 }
 
-/* Field styling: match the gold outline & black background from your mockup */
+/*  match the gold outline & black background mockup */
 .fs-field {
   display: flex;
   flex-direction: column;
@@ -1173,16 +1064,15 @@ width: 3vw ;
 .fs-label {
   font-family: var(--headingfont);
   font-size: 1vw;
-  color: #c3983a; /* Gold-like color for label text */
+  color: #c3983a; 
   text-transform: uppercase;
 }
 
-/* Input & Textarea styling with gold outline on black background */
 .fs-input,
 .fs-textarea {
-  background-color: #000;  /* Black background */
-  color: #fff;             /* White text */
-  border: 1px solid #c3983a; /* Gold border */
+  background-color: #000;  
+  color: #fff;             
+  border: 1px solid #c3983a; 
   padding: 1vh 1vw;
   font-size: 1vw;
   font-family: var(--contentfont);
@@ -1193,7 +1083,7 @@ width: 3vw ;
 /* Focus effect on input/textarea */
 .fs-input:focus,
 .fs-textarea:focus {
-  border: 1px solid #ffcc66; /* Lighter gold on focus */
+  border: 1px solid #ffcc66; 
 }
 
 /* The text area is bigger */
@@ -1207,12 +1097,12 @@ width: 3vw ;
 ********************************/
 .fs-button-group {
   display: flex;
-  justify-content: flex-start; /* Left-align the button, or use center if you prefer */
+  justify-content: flex-start; 
 }
 
 .appointment-btn {
-  background-color: #c3983a;   /* Gold background */
-  color: #000;                 /* Black text */
+  background-color: #c3983a;   
+  color: #000;                 
   font-family: var(--headingfont);
   font-weight: 700;
   font-size: 1vw;
@@ -1229,39 +1119,6 @@ width: 3vw ;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /********************************
   CONTACT SECTION LAYOUT
 ********************************/
@@ -1270,24 +1127,20 @@ width: 3vw ;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  max-width: 1200px; /* or remove if you want full width */
+  max-width: 1200px; 
   margin: 10vh auto; /* vertical spacing, centers container */
   padding: 0 5vw;
   box-sizing: border-box;
   gap: 5vw;          /* space between left & right columns */
 }
 
-.contact-info {
-  flex: 1;           /* left side grows to fill space */
-  max-width: 40%;    /* or a fixed ratio */
-  color: #fff;       /* text color, adjust if needed */
-}
+
 
 .contact-title {
   font-family: var(--headingfont);
   font-size: 3vw;    /* scale heading with viewport width */
   margin-bottom: 2vh;
-  color: #fff;       /* gold or white, etc. */
+  color: #fff;     
 }
 
 .contact-desc {
@@ -1373,17 +1226,9 @@ width: 3vw ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+/********************************
+  MAP SECTION LAYOUT
+********************************/
 .map {
   display: flex;          
   flex-direction: column; 
@@ -1420,7 +1265,6 @@ width: 3vw ;
   width: 100%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
   filter: drop-shadow(0px 0px 2px rgba(23, 26, 31, 0.12)) drop-shadow(0px 0px 1px rgba(23, 26, 31, 0.07));
-  /* Increase the top and bottom padding for more vertical space */
   padding: 8vh 5vw; 
   box-sizing: border-box;
 }
@@ -1429,9 +1273,9 @@ width: 3vw ;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  max-width: 1200px; /* optional container width */
-  margin: 0 auto;    /* center within the .details-section */
-  gap: 5vw;          /* space between left text & right table */
+  max-width: 1200px; 
+  margin: 0 auto;   
+  gap: 5vw;        
 }
 
 .details-text {
@@ -1442,7 +1286,7 @@ width: 3vw ;
 
 .details-heading {
   font-family: var(--headingfont);
-  font-size: 3vw;    /* scale with viewport width if desired */
+  font-size: 3vw;    
   margin-bottom: 2vh;
 }
 
@@ -1479,36 +1323,19 @@ width: 3vw ;
   font-size: 1rem;
 }
 
-/* Alternate row colors (slightly different shades) */
+/* Alternate row colors  */
 .business-table tr:nth-child(even) {
-  background-color: #101010; /* slightly lighter than #000 */
+  background-color: #101010; 
 }
 .business-table tr:nth-child(odd) {
-  background-color: black; /* slightly lighter than #111 */
+  background-color: black; /
 }
 
-/* Left column text (labels) style if you want it bolder or different color */
+/* Left column text style*/
 .business-table td:first-child {
   font-weight: 600;
-  width: 30%; /* adjust if you want narrower label column */
+  width: 30%; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1555,7 +1382,6 @@ width: 3vw ;
   transition: all 0.3s ease;
 }
 
-/* Remove default disclosure marker */
 .faq-item summary::-webkit-details-marker { 
   display: none;
 }
@@ -1566,7 +1392,7 @@ width: 3vw ;
   font-family: var(--headingfont, Arial, sans-serif);
   font-size: 1.2vw;
   color: #ffffff;
-  padding-right: 3vw;   /* Reserve space for custom indicator */
+  padding-right: 3vw;   
   transition: color 0.2s ease;
 }
 
@@ -1599,7 +1425,7 @@ width: 3vw ;
 .faq-right {
   width: 40%;
   position: relative;
-  min-height: 70vh;         /* Ensure sufficient height for the image */
+  min-height: 70vh;         
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -1654,88 +1480,6 @@ width: 3vw ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ======================================================
       Footer Styling
       ====================================================== */
@@ -1770,7 +1514,7 @@ footer {
   margin: 0 0 1vh 0;
   font-size: 1.2vw;  /* Scales with viewport width */
   line-height: 1.4;
-  max-width: 35vw;   /* Caps the text block width */
+  max-width: 35vw;  
   font-weight: 550;
 }
 
@@ -1819,8 +1563,8 @@ footer {
 .footer-logo-and-text {
   margin: 5vh 0 0 4vw;
   display: grid;
-  width: 30vw;       /* 30% of viewport width */
-  gap: 1vh;          /* Vertical/horizontal gap in vh */
+  width: 30vw;       
+  gap: 1vh;          
   align-items: center;
   box-sizing: border-box;
 }
@@ -1915,9 +1659,9 @@ footer {
 **********************************/
 .footer-links {
   padding: 0 0 0 8vw;
-  width: 30vw;               /* 30% of viewport width */
+  width: 30vw;              
   text-decoration: none;
-  position: absolute;        /* Absolutely positioned */
+  position: absolute;       
   top: 27vh;                 
   left: 70vw;                
   float: right;
@@ -1981,7 +1725,7 @@ footer {
 
 
 
-/*Quill style support patch */ 
+/*Quilljs styliung support patch */ 
 
     /* Alignment */
     .ql-align-center {

@@ -161,7 +161,7 @@
             const description = document.getElementById('eventDescription').value;
 
             const start = new Date(`${date}T${time}`);
-            const end = new Date(start.getTime() + duration * 60000); // Add minutes to get end time
+            const end = new Date(start.getTime() + duration * 60000); // 1 hour set for appointments bu default
 
             // POST request to backend to save appointment
             fetch("{{ route('calendar.store') }}", {

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Sections – manage reusable content blocks (including contact info)')
+@section('pageTitle', 'Sections')
 
 @section('content')
 <div class="container">

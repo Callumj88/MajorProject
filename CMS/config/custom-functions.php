@@ -93,13 +93,11 @@ function getSectionNamesByIds($ids) {
 
 
 /**
- * Renders a QuillJS editor with a CodeMirror code view.
+ * Renders a QuillJS view.
  *
- * This function outputs the HTML and JavaScript needed to display two separate editors:
- * - A Quill rich text editor (default view).
- * - A CodeMirror code view (accessible via a toggle button).
- *
- * They store their content separately so that switching views will not override the other because 
+ * This function outputs the HTML and JavaScript needed to display A Quill rich text editor (default view).
+ * 
+ * this editor uses a seperate value to codemittor so switching views will not override the value from one the other editor as
  * quilljs messes with the code to make it compatible with itself
  *
  */
