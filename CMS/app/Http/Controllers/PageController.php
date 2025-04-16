@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Blade;
 class PageController extends Controller
 {
     /**
-     * Show a public page dynamically based on its title (used as URL).
+     * Show a public page dynamically based on its title that is also used as the url
      *
      * This method looks for a page by its name,
      * loads its sections based on its idarray 
